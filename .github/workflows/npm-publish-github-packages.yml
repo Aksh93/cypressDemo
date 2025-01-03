@@ -1,27 +1,24 @@
-# This workflow will run tests using node and then publish a package to GitHub Packages when a release is created
-# For more information see: https://docs.github.com/en/actions/publishing-packages/publishing-nodejs-packages
-
-name: cypress Demo
+name: Cypress Demo
 
 on:
   push:
-    branches: main
+    branches:
+      - main
 
 jobs:
   cypress-run:
     runs-on: ubuntu-latest
     steps:
-      -name: checkout the code
-      uses: actions/checkout@v4.2.2
+      - name: Checkout the code
+        uses: actions/checkout@v4.2.2
       
       - name: Setup Node.js environment
-       uses: actions/setup-node@v4.1.0
-      with: 
-        node-version: 20
+        uses: actions/setup-node@v4.1.0
+        with: 
+          node-version: 20
 
-       - name: install dependencies
-       uses: npm install
+      - name: Install dependencies
+        run: npm install
 
-       - name: run cypress test
-       uses: npx cypress run
-       
+      - name: Run Cypress tests
+        run: npx cypress run
